@@ -9,14 +9,21 @@ function ListItem({text, onDelete}) {
 
     return (
         <li className={
-            `rounded-md 
+            `
+            flex
+            items-center
+            justify-between
+            rounded-md 
             p-2 
-            bg-indigo-800 ${checked ? 'line-through' : null}
+            bg-indigo-800 ${checked ? 'text-green-400 line-through' : 'text-white'}
             `
             }>
+            <div>
+                <input type="checkbox" checked={checked} onChange={handleCheck}/>
+                <span>{text}</span>
+            </div>
 
-            {text} 
-            <input type="checkbox" checked={checked} onChange={handleCheck}/>
+            <button className="bg-red-600 rounded-md p-2 hover:bg-red-800" onClick={onDelete}>Delete</button>
         </li>
     )
 }

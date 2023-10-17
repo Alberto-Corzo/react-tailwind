@@ -1,17 +1,40 @@
 import { useState, useRef } from "react"
 import ListItem from "../components/Lisitem"
+import { v4 as uuidv4 } from 'uuid';
 
 function Todo() {
 
     const [toDos, setTodos] = useState([])
-    const inputRef = useRef('null')
+    const inputRef = useRef(null)
 
     // agregar un nuevo ToDo
     const addToDo = () => {
         console.log(inputRef);
         const todoValue = inputRef.current.value
 
-        setTodos([...toDos, todoValue])
+        const newToDo = {
+                     id: uuidv4(),
+                     name: todoValue,
+        }
+
+        setTodos([newToDo, ...toDos]);
+
+        inputRef.current.value = ""
+
+        // if (todoValue) {
+        //     const newToDo = {
+        //         id: uuidv4(),
+        //         text: todoValue,
+        //     }
+        //     setTodos([...toDos, newToDo]);
+        //     inputRef.current.value = '';    
+        // }
+        
+    }
+
+    const deleteTodo = (id) => {
+        // filter de todos los items al id dado
+        setTodos(toDos.filter((item) => item.id !== id ))
     }
 
     return (
@@ -22,8 +45,8 @@ function Todo() {
         </div>
         <ul className="flex flex-col gap-2">
             {
-                toDos.map((value, index) =>{
-                    return <ListItem key={index} text={value} />
+                toDos.map((item) =>{
+                    return <ListItem key={item.id} text={item.name} onDelete={() => deleteTodo(item.id)}/>
                 })
             }
         </ul>
