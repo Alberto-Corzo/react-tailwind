@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import ListItem from "../components/Lisitem"
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,6 +6,13 @@ function Todo() {
 
     const [toDos, setTodos] = useState([])
     const inputRef = useRef(null)
+
+    // Dependency list es null solamente se va a ejecutar una vez
+    useEffect( () =>{
+
+    })
+
+
 
     // agregar un nuevo ToDo
     const addToDo = () => {
@@ -46,7 +53,12 @@ function Todo() {
         <ul className="flex flex-col gap-2">
             {
                 toDos.map((item) =>{
-                    return <ListItem key={item.id} text={item.name} onDelete={() => deleteTodo(item.id)}/>
+                    return <ListItem 
+                    key={item.id} 
+                    text={item.name} 
+                    onDelete={() => deleteTodo(item.id)}
+                    
+                    />
                 })
             }
         </ul>

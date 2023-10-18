@@ -1,7 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function ListItem({text, onDelete}) {
     const {checked, setChecked} = useState(false);
+
+    useEffect(() => {
+        // Ejecucion inicio del componente
+        console.log("First");
+        return () => {
+            // Destroy component
+            console.log("asdddd");
+        }
+    }, [])
 
     const handleCheck = () => {
         setChecked(!checked)
@@ -15,7 +24,8 @@ function ListItem({text, onDelete}) {
             justify-between
             rounded-md 
             p-2 
-            bg-indigo-800 ${checked ? 'text-green-400 line-through' : 'text-white'}
+            bg-indigo-800 
+            ${checked ? 'text-green-400 line-through' : 'text-white'}
             `
             }>
             <div>
