@@ -12,6 +12,10 @@ function ListItem({text, onDelete}) {
         }
     }, [])
 
+    useEffect (() => {
+        console.log("checked");
+    }, [checked])
+
     const handleCheck = () => {
         setChecked(!checked)
     }

@@ -8,10 +8,23 @@ function Todo() {
     const inputRef = useRef(null)
 
     // Dependency list es null solamente se va a ejecutar una vez
+    // useEffect( () =>{
+    //     fetch('https://jsonplaceholder.typicode.com/todos/1')
+    //         .then((response) => {
+    //             console.log(response.json());
+    //         })
+    // }, [])
+
     useEffect( () =>{
-
-    })
-
+        const getTodos = () => {
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+        }
+        getTodos()
+    }, [])
 
 
     // agregar un nuevo ToDo
